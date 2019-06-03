@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="nettside.css">
+    <div class="logo">
+      <img width="30%" height="20%" src="food4u.jpg" alt="Logo">
+    </div>
+    <title>Menyer</title>
+  </head>
+
+
+
+
+  <body>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+      <script>
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyCMmCynf_EUlpwopuJIn6o-zR0dTi72i3s",
+      authDomain: "fridajohanseen.firebaseapp.com",
+      databaseURL: "https://fridajohanseen.firebaseio.com",
+      projectId: "fridajohanseen",
+      storageBucket: "fridajohanseen.appspot.com",
+      messagingSenderId: "1000921559951"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+
+    <header>
+      <nav>
+        <a href="hjem.html">HJEM</a>
+        <a href="menyer.html">MENYER</a>
+        <a href="registrering.html">HANDLEKURV</a>
+      </nav>
+    </header>
+
+
+    <main>
+      <section id="kategori">
+        <button onclick="visMat()" name="button">Alle Menyer</button>
+        <button onclick="visPizza()" name="button">Pizza</button>
+        <button onclick="visBurger()" name="button">Burgere</button>
+        <button onclick="visSmåretter()" name="button">Småretter</button>
+      </section>
+
+      <h1>SKJEKK UT VÅRE MENYER!</h1>
+
+
+        <p class="menyer">
+          Vi serverer et raust utvalg av lunsj og
+          middagsretter på Food 4 U sitt eget vis.
+          Maten lager vi på eget kjøkken og med mye kjærlighet.
+          Vi kan tilby alt fra chiapudding
+          til den saftigste amerikanske burgeren.
+          Vi har alt fra frokost menyer, lunsj menyer til
+          middagsmenyer.
+          <br>
+          <br>
+          God fornøyelse!</p>
+
+    <section id="secMat"></section>
+
+      </main>
+
+       <script type="text/javascript">
+          const db = firebase.database();
+          const Burger = db.ref("Mat/Burger");
+          const Pizza = db.ref("Mat/Pizza");
+          const Småretter = db.ref("Mat/Småretter");
+          const secMat = document.querySelector("#secMat");
+
+          function visMat(snapshot){
+              let Mat = snapshot.val();
+              let key = snapshot.key;
+              let parent = snapshot.ref.parent.key;
+              let ref = parent + "/"+key;
+              console.log(Mat);
+
+              secMat.innerHTML +=`
+                  <article class="Mat">
+                    <h1>${Mat.Navn}</h1>
+                    <img src="${Mat.Bilde}" alt="">
+                    <p>Pris: ${Mat.Pris}</p>
+                    <a class="velgmat" href="velgmat.html?key=${key}&parent=${parent}"=>Vis mer</a>
+                    </article>
+              `;
+            }
+
+
+        function visAlle(){
+          secMat.innerHTML = "";
+          Pizza.on("child_added", visMat);
+          Burger.on("child_added", visMat);
+          Småretter.on("child_added", visMat);
+        }
+
+
+      visAlle();
+
+      function sec1Mat() {
+        secMat.innerHTML=""; //fjerner alt innhold i html
+          Pizza.on("child_added",visMat);
+          Burger.on("child_added", visMat);
+          Småretter.on("child_added", visMat);
+      }
+
+      function visPizza() {
+        secMat.innerHTML=""; //fjerner alt innhold i html
+          Pizza.orderByChild("Mat/Pizza").on("child_added",visMat);
+
+      }
+
+      function visBurger() {
+        secMat.innerHTML=""; //fjerner alt innhold i htmløøøøøøøøøøøøøø
+          Burger.orderByChild("Mat/Burger").on("child_added",visMat);
+          }
+
+          function visSmåretter() {
+            secMat.innerHTML=""; //fjerner alt innhold i html
+              Småretter.orderByChild("Mat/Småretter").on("child_added",visMat);
+          }
+
+
+
+
+    </script>
+
+
+    <footer>
+      <h2>KONTAKTINFORMASJON</h2>
+        <p class="footer">
+          <b>
+            <br>Mobil: 95400561
+              <br>Kontoradresse: Food gata 300
+              <br>Email: Food4u@gmail.com
+              <br>Åpningstider: 10.00 - 20.00
+            </b>
+          </p>
+    </footer>
+
+  </body>
+</html>

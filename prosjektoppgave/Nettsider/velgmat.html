@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="nettside.css">
+    <div class="logo">
+      <img width="30%" height="20%" src="food4u.jpg" alt="Logo">
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+      <script>
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyCMmCynf_EUlpwopuJIn6o-zR0dTi72i3s",
+      authDomain: "fridajohanseen.firebaseapp.com",
+      databaseURL: "https://fridajohanseen.firebaseio.com",
+      projectId: "fridajohanseen",
+      storageBucket: "fridajohanseen.appspot.com",
+      messagingSenderId: "1000921559951"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="hjem.html">HJEM</a>
+        <a href="menyer.html">MENYER</a>
+        <a href="registrering.html">HANDLEKURV</a>
+      </nav>
+    </header>
+
+    <main class="main2">
+
+    </main>
+
+    <script type="text/javascript">
+      const main = document.querySelector("main");
+
+      let url_string = window.location.href;
+      let url = new URL(url_string);
+      let parent = url.searchParams.get("parent");
+      let key = url.searchParams.get("key");
+
+      console.log(key,parent);
+
+      const db = firebase.database();
+      const secMat = db.ref("Mat/"+parent+"/"+key);
+
+      secMat.on("value",visMat);
+
+      function visMat(snapshot){
+        console.log(snapshot.val())
+        let key = snapshot.key;
+        let Mat = snapshot.val();
+        main.innerHTML +=`
+            <div class="bilde">
+            <img class="valgtbilde" src="${Mat.Bilde}" alt="">
+            </div>
+            <article class="mat2">
+              <h1>${Mat.Navn}</h1>
+              <p>Pris: ${Mat.Pris}</p>
+              <p>Kategori: ${Mat.Kategori}</p>
+              <p>Navn:${Mat.Navn}</p>
+            </article>
+            `
+       }
+    </script>
+
+    <footer>
+      <h2>KONTAKTINFORMASJON</h2>
+        <p class="footer">
+          <b>
+            <br>Mobil: 95400561
+              <br>Kontoradresse: Food gata 300
+              <br>Email: Food4u@gmail.com
+              <br>Åpningstider: 10.00 - 20.00
+            </b>
+          </p>
+    </footer>
+  </body>
+</html>

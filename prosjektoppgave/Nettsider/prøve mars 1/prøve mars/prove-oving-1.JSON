@@ -1,0 +1,17 @@
+"LandIEuropa":{
+  "Europa":{
+    "Land001":{
+      "Land":"Frankrike",
+      "Hovedstad":"Paris",
+      "Språk":"Fransk"
+    },
+    "Land002":{
+      "Land":"Italia",
+      "Hovedstad":"Roma",
+      "Språk":"Italiensk"
+    },
+    "Land003":{
+      "Land":"Spania",
+      "Hovedstad":"Madrid",
+      "Språk":"Spansk"
+    }

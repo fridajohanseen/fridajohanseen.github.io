@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>skjemaer</title>
+  </head>
+  <h1>Skjemaer</h1>
+  <body>
+    <table border="1">
+      <tr>
+        <td>Rad 1, kolonne 1</td>
+        <td>Rad 1, kolonne 2</td>
+      </tr>
+      <tr>
+        <td>Rad 2, kolonne 1</td>
+        <td>Rad 2, kolonne 2</td>
+        <br>
+    </table>
+
+  </body>
+  <form action="takkforpåmelding.html">
+
+    <br><input type="text" name="navn" placeholder="Hva heter du?" required><br>
+    <label>Hva ønsker du å drikke til maten?</label><br>
+  <input type="radio" name="rbDrikke" value="Brus"><span>Brus</span>
+    <input type="radio" name="rbDrikke" value="Saft"><span>Saft</span>
+    <input type="radio" name="rbDrikke" value="Vann"><span>Vann</span>
+    <br>
+    <select name="VelgMat" required>
+      <option value="">Hva ønsker du å spise?</option>
+      <option value="pizza">Pizza</option>
+      <option value="torsk">Torsk</option>
+      <option value="Taco">Taco</option>
+    </select>
+    <button type="submit">OK</button>
+  </form>
+</body>
+</html>

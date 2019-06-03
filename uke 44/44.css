@@ -1,0 +1,25 @@
+main{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+a{
+  background-color: lightgrey;
+}
+.en{
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.to{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.tre{
+  grid-column-start:
+}
+
+nav{
+  background-color: lightblue;
+  color
+}
